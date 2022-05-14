@@ -1,0 +1,24 @@
+.sidebar{
+	.thread{
+		display: flex;
+		align-items: center;
+		padding: 20px;
+		border-bottom: 1px solid rgb(190,190,190);
+		color: $white;
+		cursor: pointer;
+		&:hover{
+			background-color: rgb(2,150,199);
+		}
+		&__details{
+			margin-left: 15px;
+			position: relative;
+			width: 100%;
+		}
+		&__timestamp{
+			position: absolute;
+			top: 5px;
+			right: 0;
+		}
+		
+	}
+}

@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FC, useEffect } from 'react'
+import Telegram from './components/Telegram'
+import { useAppDispatch, useAppSelector } from './hooks/redux'
+import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import './styles/index.scss'
+import { app } from './settings/Firebase'
+import { login } from './store/reducers/userSlice'
+import LogIn from './components/LogIn'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const App: FC = () => {
+	const { uid } = useAppSelector(state => state.user)
+	const dispatch = useAppDispatch()
+	useEffect(() => {
+		const auth = getAuth(app)
+		onAuthStateChanged(auth, (authUser) => {
+			if (authUser) {
+				dispatch(login({
+					uid: authUser.uid,
+					photo: authUser.photoURL,
+					email: authUser.email,
+					displayName: authUser.displayName,
+				}))
+			} else {
+			}
+		})
+	}, [])
+	return (
+		<>
+			{uid ? <Telegram /> : <LogIn />}
+		</>
+	)
 }
 
-export default App;
+export default App

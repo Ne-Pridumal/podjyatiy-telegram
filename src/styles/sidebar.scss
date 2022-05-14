@@ -1,0 +1,56 @@
+.sidebar {
+	flex: .25;
+	display: flex;
+	height: 100vh;
+	flex-direction: column;
+	border-right: 1px solid $gray;
+	&__header{
+		display: flex;
+		height: 50px;
+		padding: 10px;
+		align-items: center;
+	}
+	&__search{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: 1;
+		background-color: $darkBlue;
+		color: $white;
+		border-radius: 5px;
+		padding: 2px;
+	}
+	&__threads{
+		overflow: scroll;
+		flex: 1;
+		&::-webkit-scrollbar{
+			display: none;
+		}
+	}
+	&__input{
+		border: none;
+		background-color: transparent;
+		outline: none;
+		color: $white;
+		flex: 1;
+	}
+
+	&__bottom{
+		display: flex;
+		justify-content: space-between;
+		padding: 10px;
+		border-top: 1px solid $gray;
+		&__avatar{
+			&:hover{
+				cursor: pointer;
+				opacity: .5;
+			}
+		}
+		> button{
+			color: $white;
+			&:hover{
+				color: $lightBlue !important;
+			}	
+		}
+	}
+}
